@@ -3,7 +3,7 @@ import { Row } from "../components/lib";
 import { Detail } from "./Workspace/Detail";
 import { ItemsPanel } from "./Workspace/Items";
 import { Minimap } from "./Workspace/Minimap";
-import { Canvas } from "./Workspace/Canvas";
+import { CanvasUnionItem } from "./Workspace/Canvas";
 import { ToolBox } from "./ToolBox";
 
 export const Flow = () => {
@@ -13,11 +13,11 @@ export const Flow = () => {
         <ToolBox />
       </ToolPanelWrapper>
       <Workspace>
-        <ItemPanelWrapper>
+        {/* <ItemPanelWrapper>
           <ItemsPanel />
-        </ItemPanelWrapper>
+        </ItemPanelWrapper> */}
         <CanvasWrapper>
-          <Canvas />
+          <CanvasUnionItem />
         </CanvasWrapper>
         <DetailPanelWrapper>
           <Detail />
@@ -48,7 +48,7 @@ const Workspace = styled.div`
   display: grid;
   grid-area: work;
   grid-template-columns: 20rem 1fr 30rem;
-  grid-template-areas: "nav main aside";
+  grid-template-areas: "main main aside";
 `;
 
 const CanvasWrapper = styled.main`

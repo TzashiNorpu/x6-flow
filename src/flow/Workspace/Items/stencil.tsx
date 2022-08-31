@@ -1,8 +1,12 @@
-import { useEffect } from "react";
+import { Addon, Graph } from "@antv/x6";
+import { useContext, useEffect } from "react";
+import { GraphContext } from "../Canvas/Canvas";
+import { CreateStencil } from "./stencilConfig";
 // TODO
 export const MyStencil = () => {
+  const g=useContext(GraphContext);
   useEffect(() => {
-    MyStencil();
+    CreateStencil(g);
   }, []);
   return <div>test</div>;
 };

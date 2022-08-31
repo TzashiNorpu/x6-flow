@@ -1,6 +1,6 @@
 import { Addon, Graph } from "@antv/x6";
 
-export const MyStencil = ({ g }: { g: Graph }) => {
+export const CreateStencil = (g: Graph|undefined ) => {
   return new Addon.Stencil({
     title: "流程图",
     target: g,
