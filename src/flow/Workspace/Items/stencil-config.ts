@@ -1,11 +1,10 @@
 import { Addon, Graph } from "@antv/x6";
-
-export const CreateStencil = (g: Graph|undefined ) => {
+export const CreateMyStencil = (g: Graph) => {
   return new Addon.Stencil({
-    title: "流程图",
     target: g,
-    stencilGraphWidth: 200,
-    stencilGraphHeight: 180,
+    title: "流程节点",
+    stencilGraphWidth: 600,
+    stencilGraphHeight: 400,
     collapsable: true,
     groups: [
       {
@@ -22,9 +21,7 @@ export const CreateStencil = (g: Graph|undefined ) => {
       },
     ],
     layoutOptions: {
-      columns: 2,
-      columnWidth: 80,
-      rowHeight: 55,
+      columns: 1,
     },
   });
 };

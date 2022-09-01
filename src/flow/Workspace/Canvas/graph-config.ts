@@ -2,7 +2,9 @@ import { Graph, Shape } from "@antv/x6";
 import React from "react";
 import ReactDOM from "react-dom";
 
-export const MyGraph = (current: React.ReactInstance | null | undefined) => {
+export const CreateMyGraph = (
+  current: React.ReactInstance | null | undefined
+) => {
   return new Graph({
     container: ReactDOM.findDOMNode(current) as HTMLElement,
     grid: true,

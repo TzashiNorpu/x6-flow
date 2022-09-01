@@ -3,7 +3,8 @@ import { Collapse } from "antd";
 import startIcon from "assets/flow/start.svg";
 import serviceTask from "assets/flow/serviceTask.svg";
 import scriptTask from "assets/flow/scriptTask.svg";
-export const ItemsPanel = () => {
+import { Graph } from "@antv/x6";
+export const Items = ({ graph }: { graph: Graph | undefined }) => {
   return (
     <Container bordered={false} defaultActiveKey={[]}>
       <Item
