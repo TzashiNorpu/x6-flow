@@ -1,32 +1,29 @@
 import styled from "@emotion/styled";
-import { Collapse } from "antd";
 import startIcon from "assets/flow/start.svg";
 import serviceTask from "assets/flow/serviceTask.svg";
 import scriptTask from "assets/flow/scriptTask.svg";
-import { Graph } from "@antv/x6";
-export const Items = ({ graph }: { graph: Graph | undefined }) => {
+import { Addon, Graph } from "@antv/x6";
+import { startDrag } from "./Dnd";
+import { Dnd } from "@antv/x6/lib/addon";
+export const Items = ({
+  graph,
+  dnd,
+}: {
+  graph: Graph | undefined;
+  dnd: Addon.Dnd | undefined;
+}) => {
+  const drag = startDrag(graph as Graph)(dnd as Dnd);
   return (
-    <Container bordered={false} defaultActiveKey={[]}>
-      <Item
-        data-item={"{clazz:'start',size:'30*30',label:''}"}
-        src={startIcon}
-      />
-      <Item
-        data-item={"{clazz:'start',size:'30*30',label:''}"}
-        src={serviceTask}
-      />
-      <Item
-        data-item={"{clazz:'start',size:'30*30',label:''}"}
-        src={scriptTask}
-      />
+    <Container>
+      <Item src={startIcon} onMouseDown={drag} />
+      <Item src={serviceTask} onMouseDown={drag} />
+      <Item src={scriptTask} onMouseDown={drag} />
     </Container>
   );
 };
 
 const Item = styled.img`
-  /*   width: 92px;
-  height: 96px; */
-  padding: 4px;
+  padding: 1rem;
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 2px;
   margin: 0 auto 0;
@@ -36,7 +33,7 @@ const Item = styled.img`
   }
 `;
 
-const Container = styled(Collapse)`
+const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;

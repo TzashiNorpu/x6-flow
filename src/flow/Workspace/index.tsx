@@ -1,25 +1,28 @@
-import { Graph } from "@antv/x6";
+import { Addon, Graph } from "@antv/x6";
 import styled from "@emotion/styled";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { Canvas } from "./Canvas/Canvas";
 import { CreateMyGraph } from "./Canvas/graph-config";
-import { MyStencil } from "./Items/Stencil";
 import "./graph-init";
-import { Dnd } from "@antv/x6/lib/addon";
 import { Items } from "./Items/Items";
+import { CreateMyDnd } from "./Items/Dnd";
 export const Workspace = () => {
-  const graphRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [g, setG] = useState<Graph>();
+  const graphRef =
+    useRef<HTMLDivElement>() as React.MutableRefObject<HTMLDivElement>;
+
+  const [graph, setGraph] = useState<Graph>();
+  const [dnd, setDnd] = useState<Addon.Dnd>();
   useEffect(() => {
-    const graph = CreateMyGraph(graphRef.current);
-    setG(graph);
-  }, [graphRef]);
+    const g = CreateMyGraph(graphRef.current);
+    const d = CreateMyDnd(g);
+    setGraph(g);
+    setDnd(d);
+  }, []);
+
   return (
-    <Wrapper ref={containerRef}>
-      {/* <MyStencil graph={g}></MyStencil> */}
-      <Items></Items>
+    <Wrapper>
+      <Items graph={graph} dnd={dnd}></Items>
       <Canvas ref={graphRef}></Canvas>
     </Wrapper>
   );
@@ -31,13 +34,4 @@ const Wrapper = styled.div`
   height: 100%;
   grid-template-columns: 30rem 1fr 20rem;
   grid-template-areas: "stencil canvas detail";
-`;
-
-const StencilWrapper = styled.div`
-  grid-area: stencil;
-`;
-
-const CanvasWrapper = styled.div`
-  grid-area: canvas;
-  /* background-color: red; */
 `;

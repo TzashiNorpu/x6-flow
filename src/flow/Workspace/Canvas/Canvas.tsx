@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Canvas = React.forwardRef<HTMLDivElement>((props, ref) => {
-  return <div style={{ height: "100%" }} ref={ref}></div>;
+  return (
+    <div {...props} style={{ height: "100%" }} ref={ref}>
+      Hello
+    </div>
+  );
 });
