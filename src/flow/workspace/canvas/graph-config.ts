@@ -2,7 +2,7 @@ import { Graph, Shape } from "@antv/x6";
 import React from "react";
 import ReactDOM from "react-dom";
 
-export const CreateMyGraph = (current: React.ReactInstance | undefined) => {
+export const CreateGraph = (current: React.ReactInstance | undefined) => {
   return new Graph({
     container: ReactDOM.findDOMNode(current) as HTMLElement,
     grid: true,
@@ -20,13 +20,13 @@ export const CreateMyGraph = (current: React.ReactInstance | undefined) => {
       router: {
         name: "manhattan",
         args: {
-          padding: 1,
+          padding: 20,
         },
       },
       connector: {
         name: "rounded",
         args: {
-          radius: 8,
+          radius: 3,
         },
       },
       anchor: "center",
@@ -40,7 +40,7 @@ export const CreateMyGraph = (current: React.ReactInstance | undefined) => {
           attrs: {
             line: {
               stroke: "#A2B1C3",
-              strokeWidth: 2,
+              strokeWidth: 1,
               targetMarker: {
                 name: "block",
                 width: 12,
@@ -67,7 +67,7 @@ export const CreateMyGraph = (current: React.ReactInstance | undefined) => {
       },
     },
     resizing: true,
-    rotating: true,
+    // rotating: true,
     selecting: {
       enabled: true,
       rubberband: true,

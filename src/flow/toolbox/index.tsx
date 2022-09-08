@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Tooltip } from "antd";
-import { config } from "./toolsConfig";
+import { config } from "./tools-config";
 
 export const ToolBox = () => {
   return (

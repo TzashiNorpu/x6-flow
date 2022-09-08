@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Row } from "../components/lib";
-import { ToolBox } from "./ToolBox";
-import { Workspace } from "./Workspace";
+import { ToolBox } from "./toolbox";
+import { Workspace } from "./workspace";
 
 export const Flow = () => {
   return (

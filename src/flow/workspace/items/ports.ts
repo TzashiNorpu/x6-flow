@@ -1,5 +1,6 @@
-import {Graph} from "@antv/x6";
-const ports = {
+import { Graph } from "@antv/x6";
+import { MutableRefObject } from "react";
+export const PortsConfig = {
   groups: {
     top: {
       position: "top",
@@ -78,46 +79,22 @@ const ports = {
   ],
 };
 
-Graph.registerNode(
-  "custom-image",
-  {
-    inherit: "rect",
-    width: 52,
-    height: 52,
-    markup: [
-      {
-        tagName: "rect",
-        selector: "body",
-      },
-      {
-        tagName: "image",
-      },
-      {
-        tagName: "text",
-        selector: "label",
-      },
-    ],
-    attrs: {
-      body: {
-        stroke: "#5F95FF",
-        fill: "#5F95FF",
-      },
-      image: {
-        width: 26,
-        height: 26,
-        refX: 13,
-        refY: 16,
-      },
-      label: {
-        refX: 3,
-        refY: 2,
-        textAnchor: "left",
-        textVerticalAnchor: "top",
-        fontSize: 12,
-        fill: "#fff",
-      },
-    },
-    ports: { ...ports },
-  },
-  true
-);
+export const ShowPorts = (g: Graph, ref: MutableRefObject<HTMLDivElement>) => {
+  const showPorts = (ports: NodeListOf<SVGElement>, show: boolean) => {
+    for (let i = 0, len = ports.length; i < len; i = i + 1) {
+      ports[i].style.visibility = show ? "visible" : "hidden";
+    }
+  };
+  g.on("node:mouseenter", () => {
+    const ports = ref.current.querySelectorAll(
+      ".x6-port-body"
+    ) as NodeListOf<SVGElement>;
+    showPorts(ports, true);
+  });
+  g.on("node:mouseleave", () => {
+    const ports = ref.current.querySelectorAll(
+      ".x6-port-body"
+    ) as NodeListOf<SVGElement>;
+    showPorts(ports, false);
+  });
+};
