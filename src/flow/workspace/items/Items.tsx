@@ -4,6 +4,7 @@ import { StartDrag } from "./dnd";
 import { Dnd } from "@antv/x6/lib/addon";
 import { config } from "./items-config";
 import { useFlow } from "flow/context/context";
+import React from "react";
 export const Items = () => {
   const { graph, dnd } = useFlow();
   const drag = StartDrag(graph as Graph)(dnd as Dnd);

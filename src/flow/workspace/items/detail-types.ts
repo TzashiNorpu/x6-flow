@@ -25,13 +25,22 @@ export interface StartNodeDataType {
 
 export interface ServiceNodeDataType {
   Type: NodeType.ServiceTask;
-  ServiceName: string;
-  ServiceMethod: string;
-  CompensateState?: string;
-  Next?: string;
-  Input: string[];
-  Output: {};
-  Status: {};
+  sys: {
+    name: string | null;
+    id: string | null;
+  };
+  interface: {
+    name: string | null;
+    id: string | null;
+  };
+  method: {
+    name: string | null | undefined;
+    id: string | null | undefined;
+  };
+  args: {
+    input: [] | null;
+    output: [] | null;
+  };
 }
 
 export interface ScriptNodeDataType {
@@ -121,4 +130,3 @@ export interface SubStateMachineNodeDataType {
   Output: {};
   Status: {};
 }
-

@@ -20,7 +20,6 @@ export const http = async (
     },
     ...customConfig,
   };
-
   if (config.method.toUpperCase() === "GET") {
     endpoint += `?${qs.stringify(data)}`;
   } else {
@@ -36,8 +35,9 @@ export const http = async (
         return Promise.reject({ message: "请重新登录" });
       }
       const data = await response.json();
+      // console.log("data", data);
       if (response.ok) {
-        return data;
+        return data.data;
       } else {
         return Promise.reject(data);
       }

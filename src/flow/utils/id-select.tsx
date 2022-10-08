@@ -4,10 +4,10 @@ import { Select } from "antd";
 type Raw = string | number;
 type SelectProps = React.ComponentProps<typeof Select>;
 
-interface IdSelectProps
-  extends Omit<SelectProps, "value" | "onChange" | "options"> {
+interface IdSelectProps extends Omit<SelectProps, "value" | "options"> {
+  parentid?: string | null;
   value?: Raw | null | undefined;
-  onChange?: (value?: number) => void;
+  handler?: (value?: any) => void;
   defaultOptionName?: string;
   options?: { name: string; id: number }[];
 }
@@ -21,18 +21,28 @@ interface IdSelectProps
  * @constructor
  */
 export const IdSelect = (props: IdSelectProps) => {
-  const { value, onChange, defaultOptionName, options, ...restProps } = props;
+  // console.log("props", props);
+  const { value, handler, defaultOptionName, options, ...restProps } = props;
   return (
     <Select
-      value={options?.length ? toNumber(value) : 0}
-      onChange={(value) => onChange?.(toNumber(value) || undefined)}
+      // value={options?.length ? toNumber(value) : 0}
+      /* onChange={(value) => {
+        onChange?.(toNumber(value) || 0);
+      }} */
+      labelInValue
+      defaultValue={{
+        value: value,
+      }}
+      onChange={handler}
       {...restProps}
     >
       {defaultOptionName ? (
-        <Select.Option value={0}>{defaultOptionName}</Select.Option>
+        <Select.Option key={0} value={"0"}>
+          {defaultOptionName}
+        </Select.Option>
       ) : null}
       {options?.map((option) => (
-        <Select.Option key={option.id} value={option.id}>
+        <Select.Option key={toNumber(option.id)} value={option.id}>
           {option.name}
         </Select.Option>
       ))}
@@ -40,4 +50,5 @@ export const IdSelect = (props: IdSelectProps) => {
   );
 };
 
-const toNumber = (value: unknown) => (isNaN(Number(value)) ? 0 : Number(value));
+export const toNumber = (value: unknown) =>
+  isNaN(Number(value)) ? 0 : Number(value);

@@ -6,6 +6,7 @@ import { Minimap } from "./minimap";
 import { useFlow } from "flow/context/context";
 import { ShowPorts } from "./items/ports";
 import { DetailPanel } from "./detail";
+import React from "react";
 export const Workspace = () => {
   const graphRef =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLDivElement>;
@@ -28,8 +29,8 @@ export const Workspace = () => {
       <Items />
       <Canvas ref={graphRef}></Canvas>
       <SideWrapper>
-        <DetailPanel />
-        <Minimap />
+        <DetailPanelWapper />
+        <MinimapWapper />
       </SideWrapper>
     </Wrapper>
   );
@@ -47,8 +48,16 @@ const SideWrapper = styled.div`
   grid-area: detail;
   display: grid;
   height: 100%;
-  grid-template-rows: 0.8fr 0.2fr;
+  grid-template-rows: 70rem 1fr;
   grid-template-areas:
-    "detail"
+    "info"
     "miniMap";
+`;
+
+const DetailPanelWapper = styled(DetailPanel)`
+  grid-area: info;
+`;
+
+const MinimapWapper = styled(Minimap)`
+  grid-area: miniMap;
 `;

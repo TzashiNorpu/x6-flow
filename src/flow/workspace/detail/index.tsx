@@ -5,7 +5,7 @@ import { GridDetail } from "./components/grid-detail";
 import { ScriptDetail } from "./components/script-detail";
 import { ServiceDetail } from "./components/service-detail";
 import { StartDetail } from "./components/start-detail";
-
+import React from "react";
 export const DetailPanel = () => {
   const { graph } = useFlow();
   const [type, setType] = useState<NodeType>(NodeType.Grid);
@@ -17,6 +17,7 @@ export const DetailPanel = () => {
         setType(NodeType.Grid);
       });
       graph.on("node:click", ({ cell }) => {
+        // console.log(cell);
         setType(cell.getData()["Type"]);
         setCellId(cell.id);
       });

@@ -47,8 +47,22 @@ const InitStartNodeData = {
 } as StartNodeDataType;
 
 const InitServiceNodeData = {
-  ServiceName: "xxxxx",
-  ServiceMethod: "",
+  sys: {
+    name: null,
+    id: null,
+  },
+  interface: {
+    name: null,
+    id: null,
+  },
+  method: {
+    name: undefined,
+    id: undefined,
+  },
+  args: {
+    input: null,
+    output: null,
+  },
   Type: NodeType.ServiceTask,
 } as ServiceNodeDataType;
 
